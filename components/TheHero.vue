@@ -4,10 +4,12 @@
       <div class="max-w-md">
         <h1 class="text-5xl font-bold">SN.skin</h1>
         <p class="py-6">
-          {{ $t('hero-tagline') }}
+          {{ $t("hero-tagline") }}
         </p>
         <NuxtLink to="/skins" class="btn btn-primary mr-5">Browse</NuxtLink>
-        <NuxtLink to="/tools/template" class="btn btn-outline btn-neutral">Create</NuxtLink>
+        <NuxtLink to="/tools/template" class="btn btn-outline btn-neutral"
+          >Create</NuxtLink
+        >
       </div>
     </div>
   </div>

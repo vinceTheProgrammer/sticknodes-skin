@@ -5,10 +5,6 @@
     "cleanUrls": true,
     "rewrites": [{ "source": "**", "function": "server" }],
     "public": ".output/public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }

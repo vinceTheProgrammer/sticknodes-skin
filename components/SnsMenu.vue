@@ -1,5 +1,5 @@
 <template>
-  <li v-for="item in items">
+  <li v-for="item in items" :key="item.name">
     <slot name="item" v-bind="item"></slot>
   </li>
 </template>
@@ -13,7 +13,7 @@ const props = defineProps({
     required: true,
   },
 });
-const routes = props.routes;
+const { routes } = toRefs(props);
 
 interface ReturnItem {
   active: boolean;
@@ -39,13 +39,13 @@ function updateItems(to: RouteLocationNormalized) {
     currentRoute !== undefined &&
     currentRoute.name
   ) {
-    for (let route of routes) {
-      let returnItem: ReturnItem = {
+    for (const route of routes.value) {
+      const returnItem: ReturnItem = {
         active: false,
         route: "",
         name: "",
       };
-      if (route == currentRoute.path.toString()) returnItem.active = true;
+      if (route === currentRoute.path.toString()) returnItem.active = true;
       returnItem.route = route.toString();
       const nameArr = route.toString().split("/");
       const rawname = nameArr[nameArr.length - 1];

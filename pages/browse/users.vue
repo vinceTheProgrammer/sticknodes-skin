@@ -1,10 +1,10 @@
 <template>
-    <p>Users</p>
+  <p>Users</p>
 </template>
 
 <script setup>
 definePageMeta({
-  title: 'Browse Users',
-  alias: '/users'
-})
+  title: "Browse Users",
+  alias: "/users",
+});
 </script>

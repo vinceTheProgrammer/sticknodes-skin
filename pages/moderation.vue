@@ -1,3 +1,3 @@
 <template>
-    <p>mod page</p>
+  <p>mod page</p>
 </template>

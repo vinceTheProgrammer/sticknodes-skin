@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="card card-compact bg-secondary shadow-xl md:col-span-2 sns-card">
+    <div
+      class="card card-compact bg-secondary shadow-xl md:col-span-2 sns-card"
+    >
       <div class="card-body">
         <h1 class="card-title">Output Settings</h1>
         <label class="label">
@@ -31,7 +33,9 @@
         </div>
       </div>
     </div>
-    <div class="card card-compact bg-secondary shadow-xl md:col-span-2 sns-card">
+    <div
+      class="card card-compact bg-secondary shadow-xl md:col-span-2 sns-card"
+    >
       <div class="card-body">
         <h1 class="card-title">Result</h1>
         <button class="btn">Download</button>
@@ -39,7 +43,6 @@
     </div>
   </div>
 </template>
-
 
 <script setup lang="ts">
 const includeAtlas = ref(false);

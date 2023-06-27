@@ -1,3 +1,3 @@
 <template>
-    <TheHero />
+  <TheHero />
 </template>

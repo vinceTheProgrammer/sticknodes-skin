@@ -5,7 +5,7 @@
         <div class="card-body">
           <h1 class="card-title">Dashboard</h1>
           <ul class="menu bg-transparent w-full mx-0 rounded-box">
-            <SnsMenu :routes="['/dashboard/overview','/dashboard/skins']">
+            <SnsMenu :routes="['/dashboard/overview', '/dashboard/skins']">
               <template #item="{ active, route, name }">
                 <NuxtLink :class="`${active ? 'active' : ''}`" :to="route">{{
                   name

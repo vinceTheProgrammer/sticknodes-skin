@@ -5,7 +5,14 @@
         <div class="card-body">
           <h1 class="card-title">Tools</h1>
           <ul class="menu bg-transparent w-full mx-0 rounded-box">
-            <SnsMenu :routes="['/tool/template', '/tool/update', '/tool/split', '/tool/compile']">
+            <SnsMenu
+              :routes="[
+                '/tool/template',
+                '/tool/update',
+                '/tool/split',
+                '/tool/compile',
+              ]"
+            >
               <template #item="{ active, route, name }">
                 <NuxtLink :class="`${active ? 'active' : ''}`" :to="route">{{
                   name

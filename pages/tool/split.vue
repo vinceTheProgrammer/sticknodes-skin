@@ -10,7 +10,8 @@
             <span class="label-text">Pick a skin (.zip)</span>
           </label>
           <input
-            type="file" accept=".zip"
+            type="file"
+            accept=".zip"
             class="file-input file-input-bordered w-full max-w-xs"
           />
         </div>
