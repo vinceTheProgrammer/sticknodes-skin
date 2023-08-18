@@ -1,6 +1,6 @@
 export default function () {
   return useState("notifs", () => {
-    const notifs = ref([]);
+    const notifs = ref(["cool"]);
     return notifs;
   });
 }

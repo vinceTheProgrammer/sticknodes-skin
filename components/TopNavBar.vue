@@ -1,17 +1,23 @@
 <template>
   <div class="navbar bg-base-300">
     <div class="flex-1">
-      <NuxtLink to="/" class="btn btn-ghost normal-case text-xl mr-5"
+      <NuxtLink
+        :to="localePath({ name: 'index' })"
+        class="btn btn-ghost normal-case text-xl mr-5"
         >SN.skin</NuxtLink
       >
       <div class="tabs">
-        <NuxtLink to="/skins" class="tab">Skins</NuxtLink>
-        <NuxtLink to="/users" class="tab">Users</NuxtLink>
+        <NuxtLink :to="localePath({ name: 'browse-skins' })" class="tab"
+          >Skins</NuxtLink
+        >
+        <NuxtLink :to="localePath({ name: 'browse-users' })" class="tab">{{
+          useCapitalize($t("user", 2))
+        }}</NuxtLink>
       </div>
     </div>
     <div class="flex-none mr-5">
-      <NuxtLink to="/notifications">
-        <IconNotif icon-class="fa-lg" />
+      <NuxtLink :to="localePath({ name: 'notifications' })">
+        <IconNotif size="1.5em" />
       </NuxtLink>
     </div>
     <div class="flex-none mr-5">
@@ -28,9 +34,10 @@
                 />
               </div>
             </div>
-            <font-awesome-icon
+            <Icon
               class="self-center -ml-3"
-              icon="fa-solid fa-angle-down"
+              name="mdi:chevron-down"
+              size="1.5em"
             />
           </label>
         </div>
@@ -39,35 +46,56 @@
           class="menu menu-sm dropdown-content p-2 shadow rounded-box w-52 bg-secondary z-50 border-2"
         >
           <li>
-            <NuxtLink to="/user/you"
+            <NuxtLink
+              :to="
+                localePath({
+                  name: 'user-username',
+                  params: { username: 'hugh2' },
+                })
+              "
               >@username <br />
-              Go to your profile</NuxtLink
+              {{ useCapitalize($t("profile-menu-item")) }}</NuxtLink
             >
           </li>
           <div class="divider my-1"></div>
           <li>
-            <NuxtLink to="/upload/file-upload"
-              ><font-awesome-icon icon="fa-solid fa-file-arrow-up" />Upload a
-              skin</NuxtLink
+            <NuxtLink :to="localePath({ name: 'upload-file-upload' })"
+              ><Icon name="mdi:file-upload" size="1.5em" />{{
+                useCapitalize($t("upload-menu-item"))
+              }}</NuxtLink
             >
           </li>
           <div class="divider my-1"></div>
           <li>
-            <NuxtLink to="/tools/template">Tools</NuxtLink>
+            <NuxtLink :to="localePath({ name: 'tool-template' })">{{
+              useCapitalize($t("tool", 2))
+            }}</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/notifications">Notifications</NuxtLink>
+            <NuxtLink :to="localePath({ name: 'notifications' })">{{
+              useCapitalize($t("notification", 2))
+            }}</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/dashboard/overview">Dashboard</NuxtLink>
+            <NuxtLink :to="localePath({ name: 'dashboard-overview' })">{{
+              useCapitalize($t("dashboard"))
+            }}</NuxtLink>
           </li>
           <li>
-            <NuxtLink to="/settings/appearance">Settings</NuxtLink>
+            <NuxtLink :to="localePath({ name: 'settings-appearance' })">{{
+              useCapitalize($t("setting", 2))
+            }}</NuxtLink>
           </li>
           <div class="divider my-1"></div>
-          <li><a>Logout</a></li>
+          <li>
+            <a>{{ useCapitalize($t("logout")) }}</a>
+          </li>
         </ul>
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const localePath = useLocalePath();
+</script>

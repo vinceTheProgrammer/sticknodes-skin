@@ -3,20 +3,23 @@
     <div>
       <div class="card card-compact bg-secondary shadow-xl md:col-span-1">
         <div class="card-body">
-          <h1 class="card-title">Tools</h1>
+          <h1 class="card-title">{{ useCapitalize($t("tool", 2)) }}</h1>
           <ul class="menu bg-transparent w-full mx-0 rounded-box">
             <SnsMenu
+              :key="langChangeKey"
               :routes="[
-                '/tool/template',
-                '/tool/update',
-                '/tool/split',
-                '/tool/compile',
+                ['tool', 'template'],
+                ['tool', 'update'],
+                ['tool', 'split'],
+                ['tool', 'compile'],
               ]"
             >
               <template #item="{ active, route, name }">
-                <NuxtLink :class="`${active ? 'active' : ''}`" :to="route">{{
-                  name
-                }}</NuxtLink>
+                <NuxtLink
+                  :class="`${active ? 'active' : ''}`"
+                  :to="localePath({ name: route as RoutesNamesList })"
+                  >{{ name }}</NuxtLink
+                >
               </template>
             </SnsMenu>
           </ul>
@@ -29,7 +32,17 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { RoutesNamesList } from "~/.nuxt/typed-router/__routes";
+
+const { locale } = useI18n();
+const langChangeKey = ref(0);
+const localePath = useLocalePath();
+
+watch(locale, () => {
+  langChangeKey.value++;
+});
+
 definePageMeta({
   title: "Tools",
   alias: "/tools",

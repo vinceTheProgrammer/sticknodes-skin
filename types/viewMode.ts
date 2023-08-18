@@ -1,7 +1,7 @@
-enum ViewModes {
+enum ViewMode {
   LIST = "list",
   GRID = "grid",
   GALLERY = "gallery",
 }
 
-export default ViewModes;
+export default ViewMode;

@@ -3,11 +3,13 @@
     <div>
       <div class="card card-compact bg-secondary shadow-xl md:col-span-1">
         <div class="card-body">
-          <h1 class="card-title">Upload</h1>
+          <h1 class="card-title">{{ useCapitalize($t("upload")) }}</h1>
           <ul class="steps steps-vertical">
-            <li class="step step-primary">Choose Files</li>
-            <li class="step">Set Metadata</li>
-            <li class="step">Review & Publish</li>
+            <li class="step step-primary">
+              {{ useStartCase($t("choose-files")) }}
+            </li>
+            <li class="step">{{ useStartCase($t("set-metadata")) }}</li>
+            <li class="step">{{ useStartCase($t("review-&-publish")) }}</li>
           </ul>
         </div>
       </div>

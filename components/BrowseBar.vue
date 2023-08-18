@@ -7,30 +7,36 @@
           class="btn"
           @click="toggleFilterPane()"
         >
-          <font-awesome-icon icon="fa-solid fa-filter" />Filters...
+          <Icon name="mdi:filter" size="1.5em" />{{
+            useStartCase($t("filter", 2))
+          }}...
         </button>
       </div>
       <div class="flex flex-wrap">
-        <label class="mb-1"
-          ><font-awesome-icon icon="fa-solid fa-magnifying-glass"
-        /></label>
+        <label class="mb-1"><Icon name="mdi:magnify" size="1.5em" /></label>
         <input
           v-model="searchQuery"
           type="text"
-          :placeholder="`Search ${getCategory(undefined).name}...`"
+          :placeholder="`${useCapitalize($t('search'))} ${
+            getCategory(undefined).name.toLowerCase() === 'users'
+              ? $t('user', 2)
+              : getCategory(undefined).name.toLowerCase()
+          }...`"
           class="input input-bordered w-full max-w-xs inline"
           @change="sendBrowseBarChangeEvent()"
         />
       </div>
       <div class="flex flex-wrap">
-        <label class="mb-1">Sort by</label>
+        <label class="mb-1">{{
+          useCapitalize(useStartCase($t("sort-by")))
+        }}</label>
         <select
           v-model="sortBy"
           class="select select-bordered w-full max-w-xs"
           @change="sendBrowseBarChangeEvent()"
         >
           <option :value="getCategory(undefined).options[0].id">
-            {{ getCategory(undefined).options[0].name }}
+            {{ useStartCase($t(getCategory(undefined).options[0].id)) }}
           </option>
           <option
             v-for="option in getCategory(undefined).options.slice(
@@ -40,12 +46,14 @@
             :key="option.id"
             :value="option.id"
           >
-            {{ option.name }}
+            {{ useStartCase($t(option.id)) }}
           </option>
         </select>
       </div>
       <div class="flex flex-wrap">
-        <label class="mb-1">Show per page</label>
+        <label class="mb-1">{{
+          useCapitalize(useStartCase($t("show-per-page")))
+        }}</label>
         <select
           v-model="showPerPage"
           class="select select-bordered w-full max-w-xs"
@@ -61,7 +69,7 @@
       </div>
       <div class="pt-6">
         <button class="btn" @click="cycleViewMode()">
-          <font-awesome-icon :icon="`fa-solid fa-${getViewModeIconName()}`" />
+          <Icon :name="getViewModeIconName()" size="1.5em" />
         </button>
       </div>
     </div>
@@ -71,7 +79,7 @@
 <script setup lang="ts">
 import { RouteLocationNormalized } from "vue-router";
 import useBreakpoint from "~/composables/useBreakpoint";
-import ViewModes from "~/types/viewModes";
+import ViewMode from "~/types/viewMode";
 
 const emit = defineEmits(["browse-bar-change"]);
 const sendBrowseBarChangeEvent = () =>
@@ -88,12 +96,12 @@ const sortBy = ref("latest");
 const showPerPage = ref(6);
 const searchQuery = ref("");
 const browseFiltersOpen = ref(false);
-const viewMode = ref(ViewModes.LIST);
+const viewMode = ref(ViewMode.LIST);
 
 const breakpoint = useBreakpoint();
 
 onMounted(() => {
-  sortBy.value = getCategory(route).options[0].id;
+  sortBy.value = getCategory(route as RouteLocationNormalized).options[0].id;
   sendBrowseBarChangeEvent();
 });
 
@@ -149,10 +157,10 @@ const categories = {
 };
 
 function getCategory(newRoute: RouteLocationNormalized | undefined) {
-  let _route = route;
+  let _route = route as RouteLocationNormalized;
   if (newRoute) _route = newRoute;
   if (_route.name) {
-    switch (_route.name) {
+    switch (_route.name.toString().split("___")[0]) {
       case "browse-skins":
         return categories.skins;
       case "browse-users":
@@ -166,18 +174,16 @@ function getCategory(newRoute: RouteLocationNormalized | undefined) {
 }
 
 function cycleViewMode() {
-  if (viewMode.value === ViewModes.LIST) viewMode.value = ViewModes.GRID;
-  else if (viewMode.value === ViewModes.GRID)
-    viewMode.value = ViewModes.GALLERY;
-  else if (viewMode.value === ViewModes.GALLERY)
-    viewMode.value = ViewModes.LIST;
+  if (viewMode.value === ViewMode.LIST) viewMode.value = ViewMode.GRID;
+  else if (viewMode.value === ViewMode.GRID) viewMode.value = ViewMode.GALLERY;
+  else if (viewMode.value === ViewMode.GALLERY) viewMode.value = ViewMode.LIST;
   sendBrowseBarChangeEvent();
 }
 
 function getViewModeIconName() {
-  if (viewMode.value === ViewModes.LIST) return "list-ul";
-  else if (viewMode.value === ViewModes.GRID) return "border-all";
-  else if (viewMode.value === ViewModes.GALLERY) return "image";
+  if (viewMode.value === ViewMode.LIST) return "mdi:format-list-bulleted";
+  else if (viewMode.value === ViewMode.GRID) return "mdi:view-grid";
+  else if (viewMode.value === ViewMode.GALLERY) return "mdi:image";
 }
 
 function toggleFilterPane() {
@@ -185,3 +191,4 @@ function toggleFilterPane() {
   sendBrowseBarChangeEvent();
 }
 </script>
+~/types/viewMode

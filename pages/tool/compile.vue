@@ -4,10 +4,12 @@
       class="card card-compact bg-secondary shadow-xl md:col-span-2 sns-card"
     >
       <div class="card-body">
-        <h1 class="card-title">Input Settings</h1>
+        <h1 class="card-title">{{ useStartCase($t("input-settings")) }}</h1>
         <div class="form-control w-full max-w-xs">
           <label class="label">
-            <span class="label-text">Pick a skin (.zip)</span>
+            <span class="label-text">{{
+              useCapitalize($t("pick-a-skin"))
+            }}</span>
           </label>
           <input
             type="file"
@@ -21,9 +23,11 @@
       class="card card-compact bg-secondary shadow-xl md:col-span-2 sns-card"
     >
       <div class="card-body">
-        <h1 class="card-title">Output Settings</h1>
+        <h1 class="card-title">{{ useStartCase($t("output-settings")) }}</h1>
         <label class="label">
-          <span class="label-text">Stick Nodes Version</span>
+          <span class="label-text">{{
+            useStartCase($t("stick-nodes-version"))
+          }}</span>
         </label>
         <select class="select select-bordered w-full">
           <option selected>3.3.4</option>
@@ -35,8 +39,8 @@
       class="card card-compact bg-secondary shadow-xl md:col-span-2 sns-card"
     >
       <div class="card-body">
-        <h1 class="card-title">Result</h1>
-        <button class="btn">Download</button>
+        <h1 class="card-title">{{ useCapitalize($t("result")) }}</h1>
+        <button class="btn">{{ useCapitalize($t("download")) }}</button>
       </div>
     </div>
   </div>

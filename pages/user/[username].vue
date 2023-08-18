@@ -18,32 +18,29 @@
           <div class="divider my-1"></div>
 
           <h1>
-            <font-awesome-icon class="fa-xl mr-2" icon="fa-solid fa-download" />
-            <span class="text-lg font-bold">0</span> downloads
+            <Icon class="mr-2" name="mdi:download" size="1.5em" />
+            <span class="text-lg font-bold">0</span> {{ $t("download", 2) }}
           </h1>
           <h1>
-            <font-awesome-icon class="fa-xl mr-2" icon="fa-solid fa-heart" />
-            <span class="text-lg font-bold">0</span> followers
+            <Icon class="mr-2" name="mdi:heart-multiple" size="1.5em" />
+            <span class="text-lg font-bold">0</span> {{ $t("follower", 2) }}
           </h1>
           <h1>
-            <font-awesome-icon
-              class="fa-xl mr-2"
-              icon="fa-solid fa-right-to-bracket"
-            />
-            Joined 10 eons ago
+            <Icon class="mr-2" name="mdi:account-clock" size="1.5em" />
+            {{
+              useCapitalize(
+                $t("joined-ago", 2, {
+                  named: { amount: "0", unit: $t("years") },
+                })
+              )
+            }}
           </h1>
           <div class="divider my-1"></div>
           <h1>
-            <font-awesome-icon
-              class="fa-xl mr-2"
-              icon="fa-solid fa-right-to-bracket"
-            />
-            User ID:
+            <Icon class="mr-2" name="mdi:card-account-details" size="1.5em" />
+            {{ useCapitalize($t("user")) }} {{ $t("ID") }}:
             <span class="badge"
-              >dj46sa9
-              <font-awesome-icon
-                class="fa-sm ml-2"
-                icon="fa-solid fa-clipboard"
+              >dj46sa9 <Icon class="mr-2" name="mdi:clipboard-text"
             /></span>
           </h1>
         </div>
@@ -51,7 +48,7 @@
       <div class="md:col-span-2">
         <div class="card card-compact bg-secondary shadow-xl w-full sns-card">
           <div class="card-body">
-            <h1 class="card-title">Information</h1>
+            <h1 class="card-title">{{ useCapitalize($t("information")) }}</h1>
             <div class="card bg-base-200 p-5">
               <h1 class="card-title">Bio</h1>
               <p>This is an epic bio.</p>
@@ -67,9 +64,9 @@
                 <thead>
                   <tr>
                     <th></th>
-                    <th>Name</th>
-                    <th>ID</th>
-                    <th>Status</th>
+                    <th>{{ useCapitalize($t("name")) }}</th>
+                    <th>{{ useCapitalize($t("ID")) }}</th>
+                    <th>{{ useCapitalize($t("status")) }}</th>
                   </tr>
                 </thead>
                 <tbody>

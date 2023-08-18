@@ -5,7 +5,7 @@
         notifs.length > 0 ? '' : 'bg-transparent'
       }`"
     ></span>
-    <font-awesome-icon :class="`${iconClass}`" icon="fa-solid fa-bell" />
+    <Icon :size="size" name="mdi:bell" />
   </div>
 </template>
 
@@ -13,12 +13,12 @@
 import useNotifs from "~/composables/useNotifs";
 
 const props = defineProps({
-  iconClass: {
+  size: {
     type: String,
     required: true,
   },
 });
-const { iconClass } = toRefs(props);
+const { size } = toRefs(props);
 
 const notifs = useNotifs();
 </script>

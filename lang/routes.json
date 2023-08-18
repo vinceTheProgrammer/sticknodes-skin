@@ -1,0 +1,114 @@
+{
+  "pages": {
+    "about-us": {
+      "en": "/about-us",
+      "es": "/sobre-nosotros",
+      "fr": "/a-propos-de-nous"
+    },
+    "administration": {
+      "en": "/administration",
+      "es": "/administracion",
+      "fr": "/administration"
+    },
+    "browse/skins": {
+      "en": "/browse/skins",
+      "es": "/navegar/skins",
+      "fr": "/parcourir/skins"
+    },
+    "browse/users": {
+      "en": "/browse/users",
+      "es": "/navegar/usuarios",
+      "fr": "/parcourir/utilisateurs"
+    },
+    "contact": {
+      "en": "/contact",
+      "es": "/contacto",
+      "fr": "/contact"
+    },
+    "dashboard/overview": {
+      "en": "/dashboard/overview",
+      "es": "/tablero/resumen",
+      "fr": "/tableau-de-bord/apercu"
+    },
+    "dashboard/skins": {
+      "en": "/dashboard/skins",
+      "es": "/tablero/skins",
+      "fr": "/tableau-de-bord/skins"
+    },
+    "legal/privacy": {
+      "en": "/legal/privacy",
+      "es": "/legal/privacidad",
+      "fr": "/mentions-legales/confidentialite"
+    },
+    "legal/rules": {
+      "en": "/legal/rules",
+      "es": "/legal/reglas",
+      "fr": "/mentions-legales/regles"
+    },
+    "legal/security": {
+      "en": "/legal/security",
+      "es": "/legal/seguridad",
+      "fr": "/mentions-legales/securite"
+    },
+    "legal/terms": {
+      "en": "/legal/terms",
+      "es": "/legal/terminos",
+      "fr": "/mentions-legales/conditions"
+    },
+    "moderation": {
+      "en": "/moderation",
+      "es": "/moderacion",
+      "fr": "/moderation"
+    },
+    "notifications": {
+      "en": "/notifications",
+      "es": "/notificaciones",
+      "fr": "/notifications"
+    },
+    "settings/appearance": {
+      "en": "/settings/appearance",
+      "es": "/configuracion/apariencia",
+      "fr": "/parametres/apparence"
+    },
+    "settings/account": {
+      "en": "/settings/account",
+      "es": "/configuracion/cuenta",
+      "fr": "/parametres/compte"
+    },
+    "skin/[title]": {
+      "en": "/skin/[title]",
+      "es": "/skin/[title]",
+      "fr": "/skin/[title]"
+    },
+    "tool/compile": {
+      "en": "/tool/compile",
+      "es": "/herramienta/compilar",
+      "fr": "/outil/compilation"
+    },
+    "tool/split": {
+      "en": "/tool/split",
+      "es": "/herramienta/dividir",
+      "fr": "/outil/division"
+    },
+    "tool/template": {
+      "en": "/tool/template",
+      "es": "/herramienta/plantilla",
+      "fr": "/outil/modele"
+    },
+    "tool/update": {
+      "en": "/tool/update",
+      "es": "/herramienta/actualizar",
+      "fr": "/outil/mise-a-jour"
+    },
+    "upload/file-upload": {
+      "en": "/upload/file-upload",
+      "es": "/subir/subir-archivo",
+      "fr": "/telecharger/transfert-fichier"
+    },
+    "user/[username]": {
+      "en": "/user/[username]",
+      "es": "/usuario/[username]",
+      "fr": "/utilisateur/[username]"
+    }
+  }
+}

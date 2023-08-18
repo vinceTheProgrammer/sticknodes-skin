@@ -9,9 +9,9 @@
             <thead>
               <tr>
                 <th></th>
-                <th>Name</th>
-                <th>ID</th>
-                <th>Status</th>
+                <th>{{ useCapitalize($t("name")) }}</th>
+                <th>{{ useCapitalize($t("ID")) }}</th>
+                <th>{{ useCapitalize($t("status")) }}</th>
               </tr>
             </thead>
             <tbody>

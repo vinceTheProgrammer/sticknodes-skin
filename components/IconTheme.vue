@@ -5,10 +5,12 @@
     <label :class="`swap ${isCoolingDown ? 'cursor-not-allowed' : ''}`">
       <input v-model="isChecked" type="checkbox" :disabled="isCoolingDown" />
       <transition name="bounce" mode="out-in">
-        <font-awesome-icon
+        <Icon
           :key="new Date().getTime()"
-          :class="`fa-lg ${isChecked ? '' : '-ml-[5px]'}`"
-          :icon="`fa-solid ${isChecked ? 'fa-moon' : 'fa-sun'}`"
+          :name="`${
+            isChecked ? 'mdi:moon-waning-crescent' : 'mdi:white-balance-sunny'
+          }`"
+          size="1.5em"
         />
       </transition>
     </label>

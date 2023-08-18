@@ -1,10 +1,12 @@
 <template>
   <div class="card card-compact bg-secondary shadow-xl md:col-span-2 sns-card">
     <div class="card-body">
-      <h1 class="card-title">Step 1: Choose Files</h1>
+      <h1 class="card-title">
+        {{ useStartCase($t("step")) }} 1: {{ useStartCase($t("choose-files")) }}
+      </h1>
       <div class="form-control w-full max-w-xs">
         <label class="label">
-          <span class="label-text">Pick a skin (.zip)</span>
+          <span class="label-text">{{ useCapitalize($t("pick-a-skin")) }}</span>
         </label>
         <input
           type="file"
@@ -15,7 +17,7 @@
       <div class="grid grid-cols-2 gap-1">
         <div class="col-span-1"></div>
         <div class="col-span-1">
-          <button class="btn float-right">Next</button>
+          <button class="btn float-right">{{ $t("next") }}</button>
         </div>
       </div>
     </div>
