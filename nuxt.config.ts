@@ -5,11 +5,6 @@ export default defineNuxtConfig({
     autoImport: true,
   },
   css: ["~/assets/css/main.css"],
-  build: {
-    postcss: {
-      order: "cssnanoLast",
-    },
-  },
   routeRules: {
     "/settings": { redirect: "/settings/appearance" },
     "/dashboard": { redirect: "/dashboard/overview" },
