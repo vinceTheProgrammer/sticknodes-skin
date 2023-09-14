@@ -5,10 +5,10 @@
       "es": "/sobre-nosotros",
       "fr": "/a-propos-de-nous"
     },
-    "administration": {
-      "en": "/administration",
-      "es": "/administracion",
-      "fr": "/administration"
+    "admin": {
+      "en": "/admin",
+      "es": "/admin",
+      "fr": "/admin"
     },
     "browse/skins": {
       "en": "/browse/skins",
@@ -55,10 +55,10 @@
       "es": "/legal/terminos",
       "fr": "/mentions-legales/conditions"
     },
-    "moderation": {
-      "en": "/moderation",
-      "es": "/moderacion",
-      "fr": "/moderation"
+    "mod": {
+      "en": "/mod",
+      "es": "/mod",
+      "fr": "/mod"
     },
     "notifications": {
       "en": "/notifications",

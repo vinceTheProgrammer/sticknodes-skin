@@ -34,7 +34,21 @@
         ><Icon name="mdi:finance" size="2em"
       /></NuxtLink>
     </button>
-    <button>
+    <button
+      v-if="useCurrentUser().value === null"
+      @click="loginModalOpen = true"
+    >
+      <Icon class="self-center -ml-3" name="mdi:login" size="2em" />
+    </button>
+    <span
+      v-show="useCurrentUser().value === undefined"
+      class="loading loading-ring loading-md"
+    ></span>
+    <button
+      v-if="
+        useCurrentUser().value !== null && useCurrentUser().value !== undefined
+      "
+    >
       <BottomNavDropdown :button-count="5" :button-index="4">
         <template #label>
           <div class="avatar h-full p-3 justify-center">
@@ -95,17 +109,44 @@
           </li>
           <div class="divider my-1"></div>
           <li>
-            <a>{{ useCapitalize($t("logout")) }}</a>
+            <a @click="signOut()">{{ useCapitalize($t("logout")) }}</a>
           </li>
         </template>
       </BottomNavDropdown>
     </button>
   </div>
+  <dialog :class="`modal modal-bottom ${loginModalOpen ? 'modal-open' : ''}`">
+    <div class="modal-box w-full">
+      <button
+        class="btn w-full"
+        @click="
+          () => {
+            signInWithGoogle();
+            loginModalOpen = false;
+          }
+        "
+      >
+        <Icon class="self-center -ml-3" name="mdi:google" size="1.5em" />{{
+          useCapitalize($t("login-with-google"))
+        }}
+      </button>
+    </div>
+    <form
+      method="dialog"
+      class="modal-backdrop"
+      @submit="loginModalOpen = false"
+    >
+      <button>close</button>
+    </form>
+  </dialog>
 </template>
 
 <script setup lang="ts">
 import { themeChange } from "theme-change";
+import { useCurrentUser } from "vuefire";
+
 const localePath = useLocalePath();
+const loginModalOpen = ref(false);
 
 onMounted(() => {
   themeChange(false);

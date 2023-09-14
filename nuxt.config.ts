@@ -15,19 +15,22 @@ export default defineNuxtConfig({
   },
   devtools: { enabled: false },
   nitro: {
-    // preset: "firebase",
-    prerender: {
-      routes: [
-        "/",
-        "/skins",
-        "/contact",
-        "/about-us",
-        "/legal/terms",
-        "/legal/privacy",
-        "/legal/rules",
-        "/legal/security",
-      ],
+    preset: "firebase",
+    firebase: {
+      gen: 2,
     },
+    // prerender: {
+    //   routes: [
+    //     "/",
+    //     "/skins",
+    //     "/contact",
+    //     "/about-us",
+    //     "/legal/terms",
+    //     "/legal/privacy",
+    //     "/legal/rules",
+    //     "/legal/security",
+    //   ],
+    // },
   },
   modules: [
     "@nuxtjs/tailwindcss",
@@ -39,6 +42,7 @@ export default defineNuxtConfig({
     "nuxt-vuefire",
     "nuxt-icon",
     "nuxt-lodash",
+    "@vite-pwa/nuxt",
     // monaco-editor
     [
       "nuxt-viewport",
@@ -109,8 +113,44 @@ export default defineNuxtConfig({
       appId: "1:784321517642:web:c7466ddabd2999461faeb3",
       measurementId: "G-0C6559S2XY",
     },
-    admin: {
-      serviceAccount: "credentials.json",
+    auth: {
+      enabled: true,
+    },
+    // admin: {
+    //   serviceAccount: "credentials.json",
+    // }, // comment out when deploying to production
+  },
+  pwa: {
+    manifest: {
+      name: "Stick Nodes Skins",
+      short_name: "SNSkins",
+      theme_color: "#1f8fff",
+      icons: [
+        {
+          src: "pwa-192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+        {
+          src: "pwa-512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any maskable",
+        },
+      ],
+    },
+  },
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        "img-src": ["'self'", "data:", "https://api.dicebear.com"],
+      },
+      crossOriginEmbedderPolicy: "unsafe-none",
     },
   },
 });

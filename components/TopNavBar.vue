@@ -23,7 +23,39 @@
     <div class="flex-none mr-5">
       <IconTheme />
     </div>
-    <div class="flex-none">
+    <div v-if="useCurrentUser().value === null">
+      <button class="btn btn-outline" @click="loginModalOpen = true">
+        <Icon class="self-center -ml-3" name="mdi:login" size="1.5em" />{{
+          useCapitalize($t("login"))
+        }}
+      </button>
+      <dialog :class="`modal ${loginModalOpen ? 'modal-open' : ''}`">
+        <div class="modal-box">
+          <button class="btn w-full" @click="signInWithGoogle()">
+            <Icon class="self-center -ml-3" name="mdi:google" size="1.5em" />{{
+              useCapitalize($t("login-with-google"))
+            }}
+          </button>
+        </div>
+        <form
+          method="dialog"
+          class="modal-backdrop"
+          @submit="loginModalOpen = false"
+        >
+          <button>close</button>
+        </form>
+      </dialog>
+    </div>
+    <span
+      v-show="useCurrentUser().value === undefined"
+      class="loading loading-ring loading-md"
+    ></span>
+    <div
+      v-if="
+        useCurrentUser().value !== null && useCurrentUser().value !== undefined
+      "
+      class="flex-none"
+    >
       <div class="dropdown dropdown-hover dropdown-end">
         <div class="flex">
           <label tabindex="0" class="btn btn-ghost flex px-1">
@@ -88,7 +120,7 @@
           </li>
           <div class="divider my-1"></div>
           <li>
-            <a>{{ useCapitalize($t("logout")) }}</a>
+            <a @click="signOut()">{{ useCapitalize($t("logout")) }}</a>
           </li>
         </ul>
       </div>
@@ -97,5 +129,8 @@
 </template>
 
 <script setup lang="ts">
+import { useCurrentUser } from "vuefire";
+
 const localePath = useLocalePath();
+const loginModalOpen = ref(false);
 </script>

@@ -1,6 +1,8 @@
 {
   "f-hero-tagline": "Browse, create, and share skins for Stick Nodes",
   "f-example-notification-description": "This is an example notification",
+  "f-toast-successful-login": "Successfully logged in as {user}.",
+  "f-toast-successful-logout": "Successfully logged out.",
   "profile-menu-item": "go to your profile",
   "upload-menu-item": "upload a skin",
   "upload": "upload",
@@ -10,6 +12,8 @@
   "language": "language | languages",
   "setting": "setting | settings",
   "logout": "logout",
+  "login": "login",
+  "login-with-google": "login with Google",
   "appearance": "appearance",
   "notification": "notification | notifications",
   "dashboard": "dashboard",
