@@ -183,7 +183,8 @@ function cycleViewMode() {
 function getViewModeIconName() {
   if (viewMode.value === ViewMode.LIST) return "mdi:format-list-bulleted";
   else if (viewMode.value === ViewMode.GRID) return "mdi:view-grid";
-  else if (viewMode.value === ViewMode.GALLERY) return "mdi:image";
+  // else if (viewMode.value === ViewMode.GALLERY) return "mdi:image";
+  else return "mdi:image";
 }
 
 function toggleFilterPane() {

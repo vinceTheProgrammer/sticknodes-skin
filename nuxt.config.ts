@@ -5,6 +5,11 @@ export default defineNuxtConfig({
     autoImport: true,
   },
   css: ["~/assets/css/main.css"],
+  build: {
+    postcss: {
+      order: "cssnanoLast",
+    },
+  },
   routeRules: {
     "/settings": { redirect: "/settings/appearance" },
     "/dashboard": { redirect: "/dashboard/overview" },
@@ -115,6 +120,9 @@ export default defineNuxtConfig({
     },
     auth: {
       enabled: true,
+    },
+    emulators: {
+      enabled: false,
     },
     // admin: {
     //   serviceAccount: "credentials.json",

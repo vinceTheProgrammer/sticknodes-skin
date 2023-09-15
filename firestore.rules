@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userID} {
+      allow read: if true;
+      allow write: if request.auth.uid == userID;
+      match /private {
+        allow read: if request.auth.uid == userID;
+        allow write: if request.auth.uid == userID;
+      }
+    }
+  	match /skins/{skinID} {
+    	allow read: if true;
+      allow write: if resource.data.authorid == request.auth.uid;
+    }
+    match /components/{componentID} {
+    	allow read: if true;
+      allow write: if resource.data.authorid == request.auth.uid;
+    }
+    match /debugusers/{ID} {
+    	allow read: if true;
+      allow write: if true;
+    }
+  }
+}
