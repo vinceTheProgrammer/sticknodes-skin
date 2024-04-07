@@ -17,6 +17,8 @@
   "appearance": "appearance",
   "notification": "notification | notifications",
   "dashboard": "dashboard",
+  "admin-dashboard": "admin dashboard",
+  "mod-dashboard": "mod dashboard",
   "account": "account | account",
   "filter": "filter | filters",
   "download-count": "download count",
@@ -66,12 +68,15 @@
   "outlined": "outlined",
   "template-style": "template style",
   "information": "information",
-  "follower": "follower",
-  "joined-ago": "joined {amount} {unit} ago",
+  "follower": "follower | followers",
+  "joined-ago": "joined {relativeTime}",
   "years": "years",
   "step": "step",
   "choose-files": "choose files",
   "next": "next",
   "set-metadata": "set metadata",
-  "review-&-publish": "review & publish"
+  "review-&-publish": "review & publish",
+  "registration-completed": "Account registration completed.",
+  "finish-registration": "finish registration",
+  "finish": "finish"
 }

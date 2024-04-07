@@ -54,7 +54,11 @@
           <div class="avatar h-full p-3 justify-center">
             <div class="rounded-full">
               <img
-                src="https://api.dicebear.com/6.x/identicon/svg?seed=Precious&backgroundColor=c0aede,b6e3f4,d1d4f9,ffd5dc,ffdfbf"
+                :src="
+                  userDoc
+                    ? userDoc.avatar
+                    : 'https://api.dicebear.com/6.x/identicon/svg?seed=default&backgroundColor=c0aede,b6e3f4,d1d4f9,ffd5dc,ffdfbf'
+                "
               />
             </div>
           </div>
@@ -65,10 +69,10 @@
               :to="
                 localePath({
                   name: 'user-username',
-                  params: { username: 'hugh' },
+                  params: { username: userDoc ? userDoc.username : 'default' },
                 })
               "
-              >@username <br />
+              >@{{ userDoc ? userDoc.username : "null" }} <br />
               {{ useCapitalize($t("profile-menu-item")) }}</NuxtLink
             >
           </li>
@@ -95,6 +99,16 @@
               useCapitalize($t("dashboard"))
             }}</NuxtLink>
           </li>
+          <li v-if="isMod">
+            <NuxtLink :to="localePath({ name: 'mod-dashboard' })">{{
+              useStartCase($t("mod-dashboard"))
+            }}</NuxtLink>
+          </li>
+          <li v-if="isAdmin">
+            <NuxtLink :to="localePath({ name: 'admin-dashboard' })">{{
+              useStartCase($t("admin-dashboard"))
+            }}</NuxtLink>
+          </li>
           <li>
             <NuxtLink :to="localePath({ name: 'settings-appearance' })">{{
               useCapitalize($t("setting", 2))
@@ -115,38 +129,41 @@
       </BottomNavDropdown>
     </button>
   </div>
-  <dialog :class="`modal modal-bottom ${loginModalOpen ? 'modal-open' : ''}`">
-    <div class="modal-box w-full">
-      <button
-        class="btn w-full"
-        @click="
-          () => {
-            signInWithGoogle();
-            loginModalOpen = false;
-          }
-        "
-      >
-        <Icon class="self-center -ml-3" name="mdi:google" size="1.5em" />{{
-          useCapitalize($t("login-with-google"))
-        }}
-      </button>
-    </div>
-    <form
-      method="dialog"
-      class="modal-backdrop"
-      @submit="loginModalOpen = false"
-    >
-      <button>close</button>
-    </form>
-  </dialog>
+  <LoginModal
+    :modal-open="loginModalOpen"
+    @modal-change="(newValue: boolean) => (loginModalOpen = newValue)"
+  />
 </template>
 
 <script setup lang="ts">
+import { doc } from "firebase/firestore";
 import { themeChange } from "theme-change";
 import { useCurrentUser } from "vuefire";
 
 const localePath = useLocalePath();
 const loginModalOpen = ref(false);
+
+const user = useCurrentUser();
+const { hasAdmin, hasMod } = useHasRoles().value;
+
+const isAdmin = ref(false);
+const isMod = ref(false);
+
+const db = useFirestore();
+const userIdSource = computed(() =>
+  doc(db, "users", user.value ? user.value.uid : "default")
+);
+const userDoc = useDocument(userIdSource);
+
+onMounted(async () => {
+  isAdmin.value = await hasAdmin();
+  isMod.value = await hasMod();
+});
+
+watch(user, async () => {
+  isAdmin.value = await hasAdmin();
+  isMod.value = await hasMod();
+});
 
 onMounted(() => {
   themeChange(false);

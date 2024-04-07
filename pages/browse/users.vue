@@ -5,8 +5,9 @@
     <div v-if="users !== null">
       <UserCard
         v-for="(user, index) in users.docs"
+        v-show="user.data().displayname.length > 0"
         :key="`user-card-${index}`"
-        :username="`${user.id}`"
+        :user="user.data()"
       />
     </div>
   </div>
@@ -40,7 +41,7 @@ let {
   "sns-users",
   () => {
     return getDocs(
-      query(collection(db, "debugusers"), limit(queryObject.value.showPerPage))
+      query(collection(db, "users"), limit(queryObject.value.showPerPage))
     );
   },
   { lazy: true, server: true }
@@ -55,10 +56,7 @@ watch(queryObject, async () => {
     "sns-users",
     () => {
       return getDocs(
-        query(
-          collection(db, "debugusers"),
-          limit(queryObject.value.showPerPage)
-        )
+        query(collection(db, "users"), limit(queryObject.value.showPerPage))
       );
     },
     { lazy: true, server: true }
