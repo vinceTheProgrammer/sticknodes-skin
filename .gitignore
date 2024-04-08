@@ -27,3 +27,5 @@ credentials.json
 .unlighthouse
 
 .firebase
+
+service-account.json

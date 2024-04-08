@@ -11,7 +11,13 @@
 const { onCall } = require("firebase-functions/v2/https");
 // import * as logger from "firebase-functions/logger";
 const admin = require("firebase-admin");
-admin.initializeApp();
+
+var serviceAccount = require("../service-account.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  //databaseURL: "https://sticknodes-skin-default-rtdb.firebaseio.com"
+});
 
 exports.addAdminRole = onCall((request) => {
   // get user and add custom claim (admin)

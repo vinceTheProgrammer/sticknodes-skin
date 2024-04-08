@@ -123,10 +123,7 @@ export default defineNuxtConfig({
     },
     emulators: {
       enabled: false,
-    },
-    // admin: {
-    //   serviceAccount: "credentials.json",
-    // }, // comment out when deploying to production
+    }
   },
   pwa: {
     manifest: {
