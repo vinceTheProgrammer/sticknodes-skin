@@ -14,7 +14,7 @@ export const categories: Categories = {
     },
     {
       label: "features",
-      type: CategoryType.CHECKBOX,
+      type: CategoryType.MULTI,
       filters: [
         "animation-menu-atlas",
         "color-picker-atlas",

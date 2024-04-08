@@ -48,6 +48,7 @@ export default defineNuxtConfig({
     "nuxt-icon",
     "nuxt-lodash",
     "@vite-pwa/nuxt",
+    "@vee-validate/nuxt",
     // monaco-editor
     [
       "nuxt-viewport",
@@ -153,7 +154,12 @@ export default defineNuxtConfig({
   security: {
     headers: {
       contentSecurityPolicy: {
-        "img-src": ["'self'", "data:", "https://api.dicebear.com"],
+        "img-src": [
+          "'self'",
+          "data:",
+          "https://api.dicebear.com",
+          "https://firebasestorage.googleapis.com",
+        ],
       },
       crossOriginEmbedderPolicy: "unsafe-none",
     },

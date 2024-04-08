@@ -20,6 +20,10 @@ admin.initializeApp({
 });
 
 exports.addAdminRole = onCall((request) => {
+  if (request.auth.token.admin !== true) {
+    return { error: "Non-admins cannot add new admins" };
+  }
+
   // get user and add custom claim (admin)
   return admin
     .auth()

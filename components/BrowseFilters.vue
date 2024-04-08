@@ -42,7 +42,7 @@
             :options="category.filters"
             :multiple="true"
             :close-on-select="false"
-            placeholder="SN Versions..."
+            :placeholder="`${useStartCase(category.label)}...`"
           />
         </li>
       </ul>
@@ -146,6 +146,14 @@ function isCheckboxInput(
 }
 
 .multiselect__option--selected {
-  @apply bg-primary;
+  @apply bg-[#41b883];
+}
+
+.multiselect__option--highlight {
+  @apply bg-secondary;
+}
+
+.multiselect__option--highlight::after {
+  @apply bg-secondary;
 }
 </style>

@@ -5,10 +5,15 @@
       "es": "/sobre-nosotros",
       "fr": "/a-propos-de-nous"
     },
-    "admin": {
-      "en": "/admin",
-      "es": "/admin",
-      "fr": "/admin"
+    "admin/dashboard": {
+      "en": "/admin/dashboard",
+      "es": "/admin/tablero",
+      "fr": "/admin/tableau-de-bord"
+    },
+    "admin/templates": {
+      "en": "/admin/templates",
+      "es": "/admin/templates",
+      "fr": "/admin/templates"
     },
     "browse/skins": {
       "en": "/browse/skins",
@@ -55,10 +60,10 @@
       "es": "/legal/terminos",
       "fr": "/mentions-legales/conditions"
     },
-    "mod": {
-      "en": "/mod",
-      "es": "/mod",
-      "fr": "/mod"
+    "mod/dashboard": {
+      "en": "/mod/dashboard",
+      "es": "/mod/tablero",
+      "fr": "/mod/tableau-de-bord"
     },
     "notifications": {
       "en": "/notifications",

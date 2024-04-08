@@ -41,7 +41,7 @@
           <option
             v-for="option in getCategory(undefined).options.slice(
               1,
-              getCategory(undefined).options.length
+              getCategory(undefined).options.length,
             )"
             :key="option.id"
             :value="option.id"

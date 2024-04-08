@@ -18,16 +18,32 @@
         <span>{{ toastText }}</span>
       </div>
     </div>
+    <RegistrationModal
+      :modal-open="showRegisterDialog"
+      @modal-change="(modalOpen: boolean) => (showRegisterDialog = modalOpen)"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import { User } from "@firebase/auth";
+import { doc, getDoc, onSnapshot } from "@firebase/firestore";
 const breakpoint = useBreakpoint();
 const user = useCurrentUser();
-const { t } = useI18n();
 const toastVisible = ref(false);
 const showToast = ref(false);
 const toastText = ref("");
+const showRegisterDialog = ref(false);
+const db = useFirestore();
+let tryingRegistration = false;
+
+onMounted(async () => {
+  if (user.value) {
+    const docRef = doc(db, "users", user.value.uid);
+    const docSnap = await getDoc(docRef);
+    if (!docSnap.exists()) tryRegistration(user.value);
+  }
+});
 
 watch(user, (user, prevUser) => {
   if (prevUser && !user) {
@@ -41,6 +57,7 @@ watch(user, (user, prevUser) => {
       }, 400);
     }, 5000);
   } else if (user) {
+    tryRegistration(user);
     toastText.value = t("f-toast-successful-login", 2, {
       named: { user: user.displayName },
     });
@@ -54,4 +71,41 @@ watch(user, (user, prevUser) => {
     }, 5000);
   }
 });
+
+watch(showRegisterDialog, async (value) => {
+  if (value === false) {
+    const uid = user.value?.uid;
+    if (uid) {
+      const docRef = doc(db, "users", uid);
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists()) signOut();
+      else {
+        toastText.value = t("registration-completed");
+        toastVisible.value = true;
+        showToast.value = true;
+        setTimeout(() => {
+          toastVisible.value = false;
+          setTimeout(() => {
+            showToast.value = false;
+          }, 400);
+        }, 5000);
+      }
+    }
+  }
+});
+
+async function tryRegistration(theUser: User) {
+  if (tryingRegistration || showRegisterDialog.value) return;
+  tryingRegistration = true;
+  const docRef = doc(db, "users", theUser.uid);
+  const docSnap = await getDoc(docRef);
+  if (!docSnap.exists()) showRegisterDialog.value = true;
+  const unsub = onSnapshot(docRef, (theDoc) => {
+    if (theDoc.exists()) {
+      showRegisterDialog.value = false;
+      unsub();
+    }
+  });
+  tryingRegistration = false;
+}
 </script>

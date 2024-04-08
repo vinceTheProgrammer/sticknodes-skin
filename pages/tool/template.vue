@@ -39,7 +39,9 @@
         </div>
         <div class="form-control">
           <label class="label cursor-pointer">
-            <span class="label-text">{{ useCapitalize($t("outlined")) }}</span>
+            <span class="label-text"
+              >{{ useCapitalize($t("outlined")) }} (WIP)</span
+            >
             <input
               disabled
               type="checkbox"
@@ -88,24 +90,61 @@ const HdDark334 = fbRef(
   storage,
   "assets/3-3-4/TemplateZips/skinTemplateHDDark334.zip"
 );
+const txtHdLight410 = fbRef(
+  storage,
+  "assets/4-1-0/TemplateZips/skinTxtTemplateHDLight410.zip"
+);
+const HdLight410 = fbRef(
+  storage,
+  "assets/4-1-0/TemplateZips/skinTemplateHDLight410.zip"
+);
+const txtHdDark410 = fbRef(
+  storage,
+  "assets/4-1-0/TemplateZips/skinTxtTemplateHDDark410.zip"
+);
+const HdDark410 = fbRef(
+  storage,
+  "assets/4-1-0/TemplateZips/skinTemplateHDDark410.zip"
+);
 
 const items = ref([
   {
     title: "3.3.4",
     value: "334",
   },
+  {
+    title: "4.1.0",
+    value: "410",
+  },
 ]);
-const value = ref(items.value[0].value);
+const value = ref(items.value[1].value);
 const light = ref("Light");
 const includeTxt = ref(true);
 
 function downloadSkinTemplate(): void {
   let templateRef = txtHdLight334;
-  if (light.value === "Dark") {
-    if (includeTxt.value === true) templateRef = txtHdDark334;
-    else templateRef = HdDark334;
-  } else if (includeTxt.value === true) templateRef = txtHdLight334;
-  else templateRef = HdLight334;
+  switch (value.value) {
+    case "334":
+      if (light.value === "Dark") {
+        if (includeTxt.value === true) templateRef = txtHdDark334;
+        else templateRef = HdDark334;
+      } else if (includeTxt.value === true) templateRef = txtHdLight334;
+      else templateRef = HdLight334;
+      break;
+    case "410":
+      if (light.value === "Dark") {
+        if (includeTxt.value === true) templateRef = txtHdDark410;
+        else templateRef = HdDark410;
+      } else if (includeTxt.value === true) templateRef = txtHdLight410;
+      else templateRef = HdLight410;
+      break;
+    default:
+      if (light.value === "Dark") {
+        if (includeTxt.value === true) templateRef = txtHdDark410;
+        else templateRef = HdDark410;
+      } else if (includeTxt.value === true) templateRef = txtHdLight410;
+      else templateRef = HdLight410;
+  }
   getDownloadURL(templateRef)
     .then((url) => {
       const xhr = new XMLHttpRequest();
